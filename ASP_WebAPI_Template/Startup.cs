@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace ASP_WebAPI_Template
 {
@@ -32,6 +33,9 @@ namespace ASP_WebAPI_Template
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "ASP_WebAPI_Template", Version = "v1" });
             });
+
+            services.AddDbContext<TodoDbContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("TodoDbContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
